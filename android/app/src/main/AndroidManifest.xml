@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.signin">
    <application
-        android:label="signin"
+        android:label="Asa"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

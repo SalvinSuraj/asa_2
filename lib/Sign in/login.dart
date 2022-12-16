@@ -25,6 +25,7 @@ class _LoginWidgetState extends State<LoginWidget>{
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Login Page"),
+        backgroundColor: Colors.deepOrange,
       ),
       body:SingleChildScrollView(
     padding: EdgeInsets.all(20),
@@ -33,14 +34,14 @@ class _LoginWidgetState extends State<LoginWidget>{
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          height: 150.0,
-          width: 190.0,
+          height: 250.0,
+          width: 250.0,
           padding: EdgeInsets.only(top: 40),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(200),
           ),
           child: Center(
-            child: Image.asset('assets/images/mental-health.png'),
+            child: Image.asset('assets/images/asa.png'),
           ),
         ),
         SizedBox(height: 40),
@@ -61,6 +62,7 @@ class _LoginWidgetState extends State<LoginWidget>{
         ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
             minimumSize: Size.fromHeight(50),
+            backgroundColor: Colors.deepOrange
           ) ,
           icon: Icon(Icons.lock_open,size:32),
           label: Text(
@@ -70,11 +72,31 @@ class _LoginWidgetState extends State<LoginWidget>{
 
           onPressed: signIn,
         ),
+        SizedBox(height: 24),
+        RichText(
+            text:TextSpan(
+              style: TextStyle(color: Colors.black,fontSize: 25),
+              text: "No Account? ",
+              children: [
+                TextSpan(
+                  text: 'Sign Up',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    color: Colors.blue
+                  ),
+                ),
+              ],
+            ) ,)
       ],
     )
   ),);
   }
 Future signIn() async{
+
+  showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(child: CircularProgressIndicator()));
 
   try {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -85,6 +107,8 @@ Future signIn() async{
   on FirebaseAuthException catch(e){
     print(e);
   }
+
+  navigatorKey.currentState!.popUntil((route) => route.isFirst);
 
 }
 }

@@ -37,7 +37,7 @@ class _SplashScreebState extends State<SplashScreeb> {
           children: [
             Column(
               children: [
-                Image.asset('assets/images/asa.png',
+                Image.asset("assets/images/asa.png",
                   height: 300.0,
                   width:300.0,),
                 Text("Asa",
