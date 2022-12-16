@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:signin/home_page.dart';
-import 'package:signin/Sign%20in/login.dart';
 import 'package:signin/splash_screen.dart';
+
+import 'Sign in/auth_page.dart';
+
 
 
 
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
 
       title: 'Flutter Demo',
@@ -45,7 +48,7 @@ class MyHomePage extends StatelessWidget {
        }
        else
          {
-           return LoginWidget();
+           return AuthPage();
          }
       }
     )
