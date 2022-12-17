@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:signin/Sign%20in/forgot_password_page.dart';
 import 'package:signin/home_page.dart';
 import 'package:signin/main.dart';
 
@@ -89,7 +90,7 @@ class _LoginWidgetState extends State<LoginWidget>{
           ),
           ),
           onTap: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => HomePage(),
+              builder: (context) => forgotPasswordPage(),
           )),
         ),
         SizedBox(height: 16,),

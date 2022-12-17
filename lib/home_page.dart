@@ -8,6 +8,12 @@ class HomePage extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.logout_rounded),
+            onPressed: () => FirebaseAuth.instance.signOut(),
+          )
+        ],
       ),
 
       body:Padding(
