@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:signin/questions/question_1.dart';
 
 import 'ProfessionalHelp.dart';
 
@@ -80,7 +81,9 @@ class _HomePageState extends  State<HomePage>
                         children: <Widget>[
                           TextButton(
                             child: const Text('Yes!'),
-                            onPressed: () {/* ... */},
+                            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const slider1(),
+                            )),
                           ),
                           const SizedBox(width: 8),
                           TextButton(
