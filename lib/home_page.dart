@@ -67,8 +67,7 @@ class _HomePageState extends  State<HomePage>
             Expanded(child:
             TabBarView(children: [
               Container(      //1st tab
-
-                   child: Column(
+                child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       const ListTile(
