@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:signin/questions/question_3.dart';
 
 class slider2 extends StatefulWidget {
-  const slider2({Key? key}) : super(key: key);
-
+  //const slider2({Key? key}) : super(key: key);
+  double pass_valq1;
+  slider2({required this.pass_valq1});
   @override
-  State<slider2> createState() => _slider2State();
+  State<slider2> createState() => _slider2State(pass_valq1);
 }
 
 class _slider2State extends State<slider2> {
-  double _currentValue = 0;
-
+  double currentValue2 = 0;
+   double pass_valq1;
+   _slider2State(this.pass_valq1);
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -34,22 +36,22 @@ class _slider2State extends State<slider2> {
 
           ) ,
             child: Slider(
-                value: _currentValue,
+                value: currentValue2,
                 min: 0,
                 max: 10,
                 divisions: 10,
-                label: _currentValue.round().toString(),
+                label: currentValue2.round().toString(),
                 activeColor: Colors.blue,
                 inactiveColor: Colors.blue.shade200,
                 thumbColor: Colors.black,
                 onChanged: (value){
                   setState(() {
-                    _currentValue = value;
+                    currentValue2 = value;
                   });
                 }),),
           SizedBox(height: 150),
           TextButton(onPressed: () =>Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const slider3(),
+            builder: (context) => slider3(pass_valq1:pass_valq1,pass_valq2:currentValue2),
           )), child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black))),
 
         ],

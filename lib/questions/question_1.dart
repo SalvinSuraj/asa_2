@@ -9,7 +9,7 @@ class slider1 extends StatefulWidget {
 }
 
 class _slider1State extends State<slider1> {
-  double _currentValue = 0;
+  double currentValue_Q1 = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -34,23 +34,23 @@ class _slider1State extends State<slider1> {
 
            ) ,
              child: Slider(
-               value: _currentValue,
+               value: currentValue_Q1,
                min: 0,
                max: 10,
                divisions: 10,
-               label: _currentValue.round().toString(),
+               label: currentValue_Q1.round().toString(),
                activeColor: Colors.blue,
                inactiveColor: Colors.blue.shade200,
                thumbColor: Colors.black,
                onChanged: (value){
                  setState(() {
-                   _currentValue = value;
+                   currentValue_Q1 = value;
                  });
                }),),
            SizedBox(height: 200),
            TextButton(child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black)),
                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                 builder: (context) => const slider2(),
+                 builder: (context) =>  slider2(pass_valq1:currentValue_Q1),
                )), ),
 
          ],

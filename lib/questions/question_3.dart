@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:signin/home_page.dart';
 
 class slider3 extends StatefulWidget {
-  const slider3({Key? key}) : super(key: key);
+  //const slider3({Key? key}) : super(key: key);
+  double pass_valq1;
+  double pass_valq2;
+  slider3({required this.pass_valq1, required this.pass_valq2});
 
   @override
-  State<slider3> createState() => _slider3State();
+  State<slider3> createState() => _slider3State(pass_valq1,pass_valq2);
 }
 
 class _slider3State extends State<slider3> {
   double _currentValue = 0;
+  double pass_valq1;
+  double pass_valq2;
+
+  _slider3State(this.pass_valq1,this.pass_valq2);
 
   @override
   Widget build(BuildContext context) {
