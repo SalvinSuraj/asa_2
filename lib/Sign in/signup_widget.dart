@@ -72,10 +72,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 decoration: InputDecoration(labelText: 'Enter your password:'),
                 obscureText: true,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator:(value) =>
-                         value != null && value.length > 6
+                validator:(value) => value != null && value.length <6
                          ?'Enter min 6. characters'
                          :null,
+
+
               ),
               SizedBox(height: 20),
               ElevatedButton.icon(

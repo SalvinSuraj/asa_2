@@ -14,19 +14,20 @@ class _slider1State extends State<slider1> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.deepOrange.shade400,
        body: Column(
-         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+         // mainAxisAlignment: MainAxisAlignment.start,
          children: [
 
-           SizedBox(height: 120),
+           SizedBox(height: 50),
            const Padding(padding: EdgeInsets.all(15),child:
            Text("How many people did you meet today?",style: TextStyle(fontSize: 50)),),
            SizedBox(height: 100),
            SliderTheme(data: const SliderThemeData(
              valueIndicatorColor: Colors.blue,
              activeTickMarkColor: Colors.transparent,
-             trackHeight: 80,
+             trackHeight: 40,
              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 25),
              overlayShape: RoundSliderOverlayShape(overlayRadius: 20)
 
@@ -41,13 +42,13 @@ class _slider1State extends State<slider1> {
                label: currentValue_Q1.round().toString(),
                activeColor: Colors.blue,
                inactiveColor: Colors.blue.shade200,
-               thumbColor: Colors.black,
+               thumbColor: Colors.white,
                onChanged: (value){
                  setState(() {
                    currentValue_Q1 = value;
                  });
                }),),
-           SizedBox(height: 200),
+           SizedBox(height: 150),
            TextButton(child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black)),
                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                  builder: (context) =>  slider2(pass_valq1:currentValue_Q1),

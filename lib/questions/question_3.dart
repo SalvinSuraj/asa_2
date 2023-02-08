@@ -21,19 +21,21 @@ class _slider3State extends State<slider3> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: Colors.deepOrange.shade400,
+      resizeToAvoidBottomInset: false,
+
+      backgroundColor: Colors.purple.shade400,
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
 
-          SizedBox(height: 120),
+          SizedBox(height: 100),
           const Padding(padding: EdgeInsets.all(15),child:
           Text("How productive do you feel today?",style: TextStyle(fontSize: 50)),),
           SizedBox(height: 100),
           SliderTheme(data: const SliderThemeData(
               valueIndicatorColor: Colors.blue,
               activeTickMarkColor: Colors.transparent,
-              trackHeight: 80,
+              trackHeight: 40,
               thumbShape: RoundSliderThumbShape(enabledThumbRadius: 20),
               overlayShape: RoundSliderOverlayShape(overlayRadius: 20)
 
@@ -48,13 +50,13 @@ class _slider3State extends State<slider3> {
                 label: _currentValue.round().toString(),
                 activeColor: Colors.blue,
                 inactiveColor: Colors.blue.shade200,
-                thumbColor: Colors.black,
+                thumbColor: Colors.white,
                 onChanged: (value){
                   setState(() {
                     _currentValue = value;
                   });
                 }),),
-          SizedBox(height: 200),
+          SizedBox(height: 150),
           TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute(
             builder: (context) =>  HomePage(),
           )), child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black))),

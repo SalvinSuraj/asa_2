@@ -16,19 +16,22 @@ class _slider2State extends State<slider2> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: Colors.deepOrange.shade400,
+      resizeToAvoidBottomInset: false,
+
+      backgroundColor: Colors.red.shade400,
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
 
-          SizedBox(height: 100),
+
+          SizedBox(height: 80),
           const Padding(padding: EdgeInsets.all(15),child:
-          Text("How happy do you feel today?",style: TextStyle(fontSize: 60)),),
+          Text("How happy do you feel today?",style: TextStyle(fontSize: 50)),),
           SizedBox(height: 100),
           SliderTheme(data: const SliderThemeData(
               valueIndicatorColor: Colors.blue,
               activeTickMarkColor: Colors.transparent,
-              trackHeight: 80,
+              trackHeight: 40,
               thumbShape: RoundSliderThumbShape(enabledThumbRadius: 20),
               overlayShape: RoundSliderOverlayShape(overlayRadius: 20)
 
@@ -43,13 +46,13 @@ class _slider2State extends State<slider2> {
                 label: currentValue2.round().toString(),
                 activeColor: Colors.blue,
                 inactiveColor: Colors.blue.shade200,
-                thumbColor: Colors.black,
+                thumbColor: Colors.white,
                 onChanged: (value){
                   setState(() {
                     currentValue2 = value;
                   });
                 }),),
-          SizedBox(height: 150),
+          SizedBox(height: 180),
           TextButton(onPressed: () =>Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => slider3(pass_valq1:pass_valq1,pass_valq2:currentValue2),
           )), child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black))),
