@@ -168,6 +168,15 @@ class NavigationDrawer extends StatelessWidget {
                 },
               ),
               ListTile(
+                leading: const Icon(Icons.my_library_music),
+                title: const Text("Music Player"),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ProfessionalHelp()));
+                },
+              ),
+              ListTile(
                 leading: const Icon(Icons.login_outlined),
                 title: const Text("Logout"),
                 onTap: () => FirebaseAuth.instance.signOut(),
