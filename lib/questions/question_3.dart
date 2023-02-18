@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:signin/home_page.dart';
+import 'Task.dart';
 
 class slider3 extends StatefulWidget {
   //const slider3({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class slider3 extends StatefulWidget {
 }
 
 class _slider3State extends State<slider3> {
-  double _currentValue = 0;
+  double currentValue3 = 0;
   double pass_valq1;
   double pass_valq2;
 
@@ -39,26 +39,24 @@ class _slider3State extends State<slider3> {
               thumbShape: RoundSliderThumbShape(enabledThumbRadius: 20),
               overlayShape: RoundSliderOverlayShape(overlayRadius: 20)
 
-
-
           ) ,
             child: Slider(
-                value: _currentValue,
+                value: currentValue3,
                 min: 0,
                 max: 10,
                 divisions: 10,
-                label: _currentValue.round().toString(),
+                label: currentValue3.round().toString(),
                 activeColor: Colors.blue,
                 inactiveColor: Colors.blue.shade200,
                 thumbColor: Colors.white,
                 onChanged: (value){
                   setState(() {
-                    _currentValue = value;
+                    currentValue3 = value;
                   });
                 }),),
           SizedBox(height: 150),
           TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) =>  HomePage(),
+            builder: (context) =>  MainPage(pass_valq1: pass_valq1, pass_valq2: pass_valq2, pass_valq3: currentValue3),
           )), child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black))),
 
         ],
