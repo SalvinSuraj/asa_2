@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:signin/music%20player/musicList.dart';
 import 'package:signin/questions/question_1.dart';
 
 import 'ProfessionalHelp.dart';
@@ -163,7 +164,7 @@ class NavigationDrawer extends StatelessWidget {
                 title: const Text("Get Professional Help"),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => const ProfessionalHelp()));
                 },
               ),
@@ -172,8 +173,8 @@ class NavigationDrawer extends StatelessWidget {
                 title: const Text("Music Player"),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ProfessionalHelp()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const MusicList()));
                 },
               ),
               ListTile(
