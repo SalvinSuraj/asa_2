@@ -26,6 +26,10 @@ class _MainPageState extends State<MainPage> {
 
   _MainPageState(this.acc_Val1, this.acc_Val2, this.acc_Val3);
 
+  Future<bool> _onWillPop() async {
+    return false; //<-- SEE HERE
+  }
+
   @override
   Widget build(BuildContext context)
   {
@@ -47,7 +51,9 @@ class _MainPageState extends State<MainPage> {
       task3status = true;
     }
 
-   return Scaffold(
+   return WillPopScope(
+     onWillPop: _onWillPop,
+        child: Scaffold(
      appBar: AppBar(
        title: Text("Complete Tassk"),
        backgroundColor: Colors.deepOrange,
@@ -72,6 +78,13 @@ class _MainPageState extends State<MainPage> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => HomePage()
                     ));
+                    // Navigator.pushAndRemoveUntil(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => HomePage()
+                    //     ),
+                    //     ModalRoute.withName("/HomePage")
+                    // );
                   }
                 });
               }
@@ -94,6 +107,11 @@ class _MainPageState extends State<MainPage> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => HomePage()
                     ));
+                    // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context){
+                    //   return HomePage();
+                    // }), (r){
+                    //   return false;
+                    // });
                   }
                 });
               }
@@ -112,10 +130,17 @@ class _MainPageState extends State<MainPage> {
                   _visible = !_visible;
 
                   acc_Val1 = 10;
-                  if( task2status == true && task3status == true ) {
+                  if(task2status == true && task3status == true ) {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => HomePage()
                     ));
+                    // Navigator.pushAndRemoveUntil(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => HomePage()
+                    //     ),
+                    //     ModalRoute.withName("/HomePage")
+                    // );
                   }
                 });
               }
@@ -123,7 +148,7 @@ class _MainPageState extends State<MainPage> {
             child: buildTask1card_3(),
           ),
         ),
-        if(acc_Val2 <= 4)
+        if(acc_Val2 <= 3)
         AnimatedOpacity(
           opacity: _visible1 ? 1.0 : 0.0,
           duration: const Duration(milliseconds: 500),
@@ -141,6 +166,13 @@ class _MainPageState extends State<MainPage> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => HomePage()
                     ));
+                    // Navigator.pushAndRemoveUntil(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => HomePage()
+                    //     ),
+                    //     ModalRoute.withName("/HomePage")
+                    // );
                     }
                 });
               }
@@ -149,7 +181,7 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
 
-        if(acc_Val2 >= 5 && acc_Val2 <= 8)
+        if(acc_Val2 >= 4 && acc_Val2 <= 6)
           AnimatedOpacity(
             opacity: _visible1 ? 1.0 : 0.0,
             duration: const Duration(milliseconds: 500),
@@ -167,6 +199,13 @@ class _MainPageState extends State<MainPage> {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => HomePage()
                       ));
+                      // Navigator.pushAndRemoveUntil(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => HomePage()
+                      //     ),
+                      //     ModalRoute.withName("/HomePage")
+                      // );
                     }
                   });
                 }
@@ -174,6 +213,39 @@ class _MainPageState extends State<MainPage> {
               child: buildTask2card_2(),
             ),
           ),
+
+        if(acc_Val2 >= 7 && acc_Val2 <= 9)
+        AnimatedOpacity(
+          opacity: _visible1 ? 1.0 : 0.0,
+          duration: const Duration(milliseconds: 500),
+          child: GestureDetector(
+            onDoubleTap: (){
+              if(_visible1) {
+                setState(() {
+
+                  _visible1 = !_visible1;
+
+                  task2status = true;
+
+                  acc_Val2 = 10;
+                  if( task1status == true  && task3status == true ) {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => HomePage()
+                    ));
+                    // Navigator.pushAndRemoveUntil(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => HomePage()
+                    //     ),
+                    //     ModalRoute.withName("/HomePage")
+                    // );
+                  }
+                });
+              }
+            },
+            child: buildTask2card_3(),
+          ),
+        ),
 
         if(acc_Val3 <= 3)
           AnimatedOpacity(
@@ -191,6 +263,13 @@ class _MainPageState extends State<MainPage> {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => HomePage()
                       ));
+                      // Navigator.pushAndRemoveUntil(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => HomePage()
+                      //     ),
+                      //     ModalRoute.withName("/HomePage")
+                      // );
                     }
                   });
                 }
@@ -215,6 +294,13 @@ class _MainPageState extends State<MainPage> {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => HomePage()
                       ));
+                      // Navigator.pushAndRemoveUntil(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => HomePage()
+                      //     ),
+                      //     ModalRoute.withName("/HomePage")
+                      // );
                     }
                   });
                 }
@@ -238,6 +324,13 @@ class _MainPageState extends State<MainPage> {
                       Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => HomePage()
                       ));
+                      // Navigator.pushAndRemoveUntil(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => HomePage()
+                      //     ),
+                      //     ModalRoute.withName("/HomePage")
+                      // );
                     }
                   });
               }
@@ -259,6 +352,13 @@ class _MainPageState extends State<MainPage> {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => HomePage()
                   ));
+                  // Navigator.pushAndRemoveUntil(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => HomePage()
+                  //     ),
+                  //     ModalRoute.withName("/HomePage")
+                  // );
                 });
               }
             },
@@ -267,33 +367,43 @@ class _MainPageState extends State<MainPage> {
         ),
       ],
     ),
-  );}
+  )
+   );}
 
   Widget buildTask1card_1() => Card(
     clipBehavior: Clip.antiAlias,
+    elevation: 50,
+    shadowColor: Colors.red,
+    margin: EdgeInsets.all(20),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24),
     ),
     child: Stack(
-      alignment: Alignment.bottomLeft,
+      alignment: Alignment.bottomCenter,
       children: [
-        Ink.image(
-          image: NetworkImage(
-            'https://previews.123rf.com/images/varijanta/varijanta1604/varijanta160400089/55848269-modern-thin-line-design-concept-for-events-website-banner-vector-illustration-concept-for-informatio.jpg',
-          ),
-          //colorFilter: ColorFilters.greyscale,
-          child: InkWell(
-            onTap: () {},
-          ),
-          height: 240,
+        // Ink.image(
+        //   image: NetworkImage(
+        //     'https://previews.123rf.com/images/varijanta/varijanta1604/varijanta160400089/55848269-modern-thin-line-design-concept-for-events-website-banner-vector-illustration-concept-for-informatio.jpg',
+        //   ),
+        //   //colorFilter: ColorFilters.greyscale,
+        //   child: InkWell(
+        //     onTap: () {},
+        //   ),
+        //   height: 240,
+        //   fit: BoxFit.cover,
+        // ),
+        Image.asset(
+          "assets/images/events.jpg",
+          height: 248,
           fit: BoxFit.cover,
         ),
         Text(
-          'GO TO A Social Event',
+          'Go To A Social Event',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontSize: 24,
+            fontStyle: FontStyle.italic,
           ),
         ),
       ],
@@ -302,21 +412,29 @@ class _MainPageState extends State<MainPage> {
 
   Widget buildTask1card_2() => Card(
     clipBehavior: Clip.antiAlias,
+    elevation: 50,
+    shadowColor: Colors.purple,
+    margin: EdgeInsets.all(20),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24),
     ),
     child: Stack(
-      alignment: Alignment.bottomLeft,
+      alignment: Alignment.bottomCenter,
       children: [
-        Ink.image(
-          image: NetworkImage(
-            'https://miro.medium.com/max/1400/1*A0xqqOV7LXlLEK1Acu8BFw.jpeg',
-          ),
-          //colorFilter: ColorFilters.greyscale,
-          child: InkWell(
-            onTap: () {},
-          ),
-          height: 240,
+        // Ink.image(
+        //   image: NetworkImage(
+        //     'https://miro.medium.com/max/1400/1*A0xqqOV7LXlLEK1Acu8BFw.jpeg',
+        //   ),
+        //   //colorFilter: ColorFilters.greyscale,
+        //   child: InkWell(
+        //     onTap: () {},
+        //   ),
+        //   height: 240,
+        //   fit: BoxFit.cover,
+        // ),
+        Image.asset(
+          "assets/images/friends.jpeg",
+          height: 248,
           fit: BoxFit.cover,
         ),
         Text(
@@ -325,6 +443,7 @@ class _MainPageState extends State<MainPage> {
             fontWeight: FontWeight.bold,
             color: Colors.red,
             fontSize: 24,
+            fontStyle: FontStyle.italic,
           ),
         ),
       ],
@@ -333,29 +452,38 @@ class _MainPageState extends State<MainPage> {
 
   Widget buildTask1card_3() => Card(
     clipBehavior: Clip.antiAlias,
+    elevation: 50,
+    shadowColor: Colors.deepPurpleAccent,
+    margin: EdgeInsets.all(20),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24),
     ),
     child: Stack(
-      alignment: Alignment.bottomLeft,
+      alignment: Alignment.bottomCenter,
       children: [
-        Ink.image(
-          image: NetworkImage(
-            'https://media.istockphoto.com/id/1349476600/vector/talk-conversation-concept.jpg?s=612x612&w=0&k=20&c=4pq7uNqStestoXXlVrYPJOdz0AT18gclj9JN7sPJEZ8=',
-          ),
-          //colorFilter: ColorFilters.greyscale,
-          child: InkWell(
-            onTap: () {},
-          ),
-          height: 240,
+        // Ink.image(
+        //   image: NetworkImage(
+        //     'https://media.istockphoto.com/id/1349476600/vector/talk-conversation-concept.jpg?s=612x612&w=0&k=20&c=4pq7uNqStestoXXlVrYPJOdz0AT18gclj9JN7sPJEZ8=',
+        //   ),
+        //   //colorFilter: ColorFilters.greyscale,
+        //   child: InkWell(
+        //     onTap: () {},
+        //   ),
+        //   height: 240,
+        //   fit: BoxFit.cover,
+        // ),
+        Image.asset(
+          "assets/images/talk.jpg",
+          height: 248,
           fit: BoxFit.cover,
         ),
         Text(
-          'A Lttle More You Can Do It',
+          'You Can Do It, Little More',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.red,
             fontSize: 24,
+            fontStyle: FontStyle.italic,
           ),
         ),
       ],
@@ -364,29 +492,38 @@ class _MainPageState extends State<MainPage> {
 
   Widget buildTask2card_1() => Card(
     clipBehavior: Clip.antiAlias,
+    elevation: 50,
+    shadowColor: Colors.deepOrange,
+    margin: EdgeInsets.all(20),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24),
     ),
     child: Stack(
-      alignment: Alignment.bottomLeft,
+      alignment: Alignment.bottomCenter,
       children: [
-        Ink.image(
-          image: NetworkImage(
-            'https://media.istockphoto.com/id/186446684/photo/piano-on-the-beach.jpg?s=612x612&w=0&k=20&c=z6TBbHmekbyVj1lXO2JIRocUrayDfteVT_uU3nkyAZ4=',
-          ),
-          // colorFilter: ColorFilters.greyscale,
-          child: InkWell(
-            onTap: () {},
-          ),
-          height: 240,
+        // Ink.image(
+        //   image: NetworkImage(
+        //     'https://media.istockphoto.com/id/186446684/photo/piano-on-the-beach.jpg?s=612x612&w=0&k=20&c=z6TBbHmekbyVj1lXO2JIRocUrayDfteVT_uU3nkyAZ4=',
+        //   ),
+        //   // colorFilter: ColorFilters.greyscale,
+        //   child: InkWell(
+        //     onTap: () {},
+        //   ),
+        //   height: 240,
+        //   fit: BoxFit.cover,
+        // ),
+        Image.asset(
+          "assets/images/peaceful.jpg",
+          height: 248,
           fit: BoxFit.cover,
         ),
         Text(
-          'Listen to some peaceful music',
+          'Listen Peaceful Music',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontSize: 24,
+            fontStyle: FontStyle.italic,
           ),
         ),
       ],
@@ -395,29 +532,78 @@ class _MainPageState extends State<MainPage> {
 
   Widget buildTask2card_2() => Card(
     clipBehavior: Clip.antiAlias,
+    elevation: 50,
+    shadowColor: Colors.redAccent,
+    margin: EdgeInsets.all(20),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24),
     ),
     child: Stack(
-      alignment: Alignment.bottomLeft,
+      alignment: Alignment.bottomCenter,
       children: [
-        Ink.image(
-          image: NetworkImage(
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_8vEJkdhMejsvisY_tkSs8MFJH6fUfIK5FA&usqp=CAU',
-          ),
-          // colorFilter: ColorFilters.greyscale,
-          child: InkWell(
-            onTap: () {},
-          ),
-          height: 240,
+        // Ink.image(
+        //   image: NetworkImage(
+        //     'https://media.istockphoto.com/id/186446684/photo/piano-on-the-beach.jpg?s=612x612&w=0&k=20&c=z6TBbHmekbyVj1lXO2JIRocUrayDfteVT_uU3nkyAZ4=',
+        //   ),
+        //   // colorFilter: ColorFilters.greyscale,
+        //   child: InkWell(
+        //     onTap: () {},
+        //   ),
+        //   height: 240,
+        //   fit: BoxFit.cover,
+        // ),
+        Image.asset(
+          "assets/images/sadsong.jpg",
+          height: 248,
           fit: BoxFit.cover,
         ),
         Text(
-          'Listen your favorite song',
+          'Listen Sad Music',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 24,
+            fontStyle: FontStyle.italic
+          ),
+        ),
+      ],
+    ),
+  );
+
+  Widget buildTask2card_3() => Card(
+    clipBehavior: Clip.antiAlias,
+    elevation: 50,
+    shadowColor: Colors.deepOrange,
+    margin: EdgeInsets.all(20),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(24),
+    ),
+    child: Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        // Ink.image(
+        //   image: NetworkImage(
+        //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_8vEJkdhMejsvisY_tkSs8MFJH6fUfIK5FA&usqp=CAU',
+        //   ),
+        //   // colorFilter: ColorFilters.greyscale,
+        //   child: InkWell(
+        //     onTap: () {},
+        //   ),
+        //   height: 240,
+        //   fit: BoxFit.cover,
+        // ),
+        Image.asset(
+          "assets/images/favourite.jpg",
+          height: 248,
+          fit: BoxFit.cover,
+        ),
+        Text(
+          'Listen Your Favorite Song',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.deepOrange,
+            fontSize: 24,
+            fontStyle: FontStyle.italic,
           ),
         ),
       ],
@@ -426,21 +612,29 @@ class _MainPageState extends State<MainPage> {
 
   Widget buildTask3card_1() => Card(
     clipBehavior: Clip.antiAlias,
+    elevation: 50,
+    shadowColor: Colors.purple,
+    margin: EdgeInsets.all(20),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24),
     ),
     child: Stack(
-      alignment: Alignment.bottomLeft,
+      alignment: Alignment.bottomCenter,
       children: [
-        Ink.image(
-          image: NetworkImage(
-            'https://as2.ftcdn.net/v2/jpg/03/51/60/57/1000_F_351605712_LXWLF7WJtVBMamZfAUGHFYjr4M4m8wHK.jpg',
-          ),
-         // colorFilter: ColorFilters.greyscale,
-          child: InkWell(
-            onTap: () {},
-          ),
-          height: 240,
+        // Ink.image(
+        //   image: NetworkImage(
+        //     'https://as2.ftcdn.net/v2/jpg/03/51/60/57/1000_F_351605712_LXWLF7WJtVBMamZfAUGHFYjr4M4m8wHK.jpg',
+        //   ),
+        //  // colorFilter: ColorFilters.greyscale,
+        //   child: InkWell(
+        //     onTap: () {},
+        //   ),
+        //   height: 240,
+        //   fit: BoxFit.cover,
+        // ),
+        Image.asset(
+          "assets/images/yoga.jpg",
+          height: 248,
           fit: BoxFit.cover,
         ),
         Text(
@@ -449,6 +643,7 @@ class _MainPageState extends State<MainPage> {
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontSize: 24,
+            fontStyle: FontStyle.italic
           ),
         ),
       ],
@@ -457,21 +652,29 @@ class _MainPageState extends State<MainPage> {
 
   Widget buildTask3card_2() => Card(
     clipBehavior: Clip.antiAlias,
+    elevation: 50,
+    shadowColor: Colors.green,
+    margin: EdgeInsets.all(20),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24),
     ),
     child: Stack(
-      alignment: Alignment.bottomLeft,
+      alignment: Alignment.bottomCenter,
       children: [
-        Ink.image(
-          image: NetworkImage(
-            'https://www.exploregeorgia.org/sites/default/files/legacy_images/gibbs-gardens-rose-arbor-1-1495035202.jpg',
-          ),
-          // colorFilter: ColorFilters.greyscale,
-          child: InkWell(
-            onTap: () {},
-          ),
-          height: 240,
+        // Ink.image(
+        //   image: NetworkImage(
+        //     'https://www.exploregeorgia.org/sites/default/files/legacy_images/gibbs-gardens-rose-arbor-1-1495035202.jpg',
+        //   ),
+        //   // colorFilter: ColorFilters.greyscale,
+        //   child: InkWell(
+        //     onTap: () {},
+        //   ),
+        //   height: 240,
+        //   fit: BoxFit.cover,
+        // ),
+        Image.asset(
+          "assets/images/garden.jpg",
+          height: 248,
           fit: BoxFit.cover,
         ),
         Text(
@@ -480,6 +683,7 @@ class _MainPageState extends State<MainPage> {
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontSize: 24,
+            fontStyle: FontStyle.italic
           ),
         ),
       ],
@@ -488,29 +692,38 @@ class _MainPageState extends State<MainPage> {
 
   Widget buildTask3card_3() => Card(
     clipBehavior: Clip.antiAlias,
+    elevation: 50,
+    shadowColor: Colors.blueGrey,
+    margin: EdgeInsets.all(20),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24),
     ),
     child: Stack(
-      alignment: Alignment.bottomLeft,
+      alignment: Alignment.bottomCenter,
       children: [
-        Ink.image(
-          image: NetworkImage(
-            'https://theflexibleprofessional.com/wp-content/uploads/2020/11/Productivity-Playlist-e1604853611514.jpg',
-          ),
-          // colorFilter: ColorFilters.greyscale,
-          child: InkWell(
-            onTap: () {},
-          ),
-          height: 240,
+        // Ink.image(
+        //   image: NetworkImage(
+        //     'https://theflexibleprofessional.com/wp-content/uploads/2020/11/Productivity-Playlist-e1604853611514.jpg',
+        //   ),
+        //   // colorFilter: ColorFilters.greyscale,
+        //   child: InkWell(
+        //     onTap: () {},
+        //   ),
+        //   height: 240,
+        //   fit: BoxFit.cover,
+        // ),
+        Image.asset(
+          "assets/images/work.jpg",
+          height: 248,
           fit: BoxFit.cover,
         ),
         Text(
-          'Complete some work',
+          'Complete Some Work',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontSize: 24,
+            fontStyle: FontStyle.italic
           ),
         ),
       ],
@@ -519,22 +732,30 @@ class _MainPageState extends State<MainPage> {
 
   Widget buildDone() => Card(
     clipBehavior: Clip.antiAlias,
+    elevation: 100,
+    shadowColor: Colors.red,
+    margin: EdgeInsets.all(20),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(24),
     ),
     child: Stack(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.center,
       children: [
-        Ink.image(
-          image: NetworkImage(
-            'https://images.pexels.com/photos/206359/pexels-photo-206359.jpeg?cs=srgb&dl=pexels-pixabay-206359.jpg&fm=jpg',
-          ),
-          // colorFilter: ColorFilters.greyscale,
-          child: InkWell(
-            onTap: () {},
-          ),
-          height: 240,
-          fit: BoxFit.cover,
+        // Ink.image(
+        //   image: NetworkImage(
+        //     'https://images.pexels.com/photos/206359/pexels-photo-206359.jpeg?cs=srgb&dl=pexels-pixabay-206359.jpg&fm=jpg',
+        //   ),
+        //   // colorFilter: ColorFilters.greyscale,
+        //   child: InkWell(
+        //     onTap: () {},
+        //   ),
+        //   height: 240,
+        //   fit: BoxFit.cover,
+        // ),
+        Image.asset(
+          "assets/images/Done.jpg",
+          height: 248,
+            fit: BoxFit.cover,
         ),
         Text(
           'You Are Done For Today !!',
@@ -542,6 +763,7 @@ class _MainPageState extends State<MainPage> {
             fontWeight: FontWeight.bold,
             color: Colors.white,
             fontSize: 24,
+            fontStyle: FontStyle.italic,
           ),
         ),
       ],

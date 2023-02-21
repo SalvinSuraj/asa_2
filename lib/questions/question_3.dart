@@ -57,8 +57,14 @@ class _slider3State extends State<slider3> {
           SizedBox(height: 150),
           TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute(
             builder: (context) =>  MainPage(pass_valq1: pass_valq1, pass_valq2: pass_valq2, pass_valq3: currentValue3),
-          )), child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black))),
-
+            // Navigator.pushAndRemoveUntil(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => MainPage(pass_valq1: pass_valq1, pass_valq2: pass_valq2, pass_valq3: currentValue3),
+            //     ),
+            //     ModalRoute.withName("/HomePage")
+            // )
+         )), child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black))),
         ],
       ),
     );
