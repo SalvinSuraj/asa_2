@@ -1,7 +1,10 @@
+import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:signin/music%20player/musicList.dart';
 import 'package:signin/questions/question_1.dart';
+import 'package:flutter/services.dart';
+
 
 import 'ProfessionalHelp.dart';
 
@@ -13,9 +16,9 @@ class HomePage extends StatefulWidget{
 }
 class _HomePageState extends  State<HomePage>
 {
-
+  final user = FirebaseAuth.instance.currentUser!;
   Widget build(BuildContext context){
-    final user = FirebaseAuth.instance.currentUser!;
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -88,7 +91,9 @@ class _HomePageState extends  State<HomePage>
                           const SizedBox(width: 8),
                           TextButton(
                             child: const Text('Not now'),
-                            onPressed: () {/* ... */},
+                            onPressed: () {
+                              SystemNavigator.pop();
+                            },
                           ),
                           const SizedBox(width: 8),
                         ],
@@ -175,6 +180,17 @@ class NavigationDrawer extends StatelessWidget {
                   Navigator.pop(context);
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => const MusicList()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.movie_creation),
+                title: const Text("Book Tickets"),
+                onTap: () {
+                 LaunchApp.openApp(
+                   androidPackageName: 'com.bt.bms',
+                   openStore: true,
+
+                 );
                 },
               ),
               ListTile(
