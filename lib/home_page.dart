@@ -13,14 +13,40 @@ class HomePage extends StatefulWidget{
   _HomePageState createState() => _HomePageState();
 
 }
+
 class _HomePageState extends  State<HomePage>
 {
   final user = FirebaseAuth.instance.currentUser!;
+
+  Future<bool> _onWillPop() async {
+    return (await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: new Text('Are you sure?'),
+        content: new Text('Do you want to exit an App'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false), //<-- SEE HERE
+            child: new Text('No'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true), // <-- SEE HERE
+            child: new Text('Yes'),
+          ),
+        ],
+      ),
+    )) ??
+        false;
+  }
+
   Widget build(BuildContext context){
 
-    return DefaultTabController(
+    return WillPopScope(
+        onWillPop: _onWillPop,
+
+    child: DefaultTabController(
       length: 2,
-      child: Scaffold(
+       child: Scaffold(
         appBar: AppBar(
           title: Text("Home"),
           backgroundColor: Colors.deepOrange,
@@ -113,7 +139,9 @@ class _HomePageState extends  State<HomePage>
             ]),)
           ],
         ),
-    ),);
+    ),
+    )
+    );
   }
 
 }

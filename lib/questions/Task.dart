@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:signin/home_page.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:signin/music%20player/musicList.dart';
+import 'package:signin/ProfessionalHelp.dart';
 
 class MainPage extends StatefulWidget {
 
@@ -27,7 +31,7 @@ class _MainPageState extends State<MainPage> {
   _MainPageState(this.acc_Val1, this.acc_Val2, this.acc_Val3);
 
   Future<bool> _onWillPop() async {
-    return false; //<-- SEE HERE
+    return false;
   }
 
   @override
@@ -54,11 +58,14 @@ class _MainPageState extends State<MainPage> {
    return WillPopScope(
      onWillPop: _onWillPop,
         child: Scaffold(
-     appBar: AppBar(
-       title: Text("Complete Tassk"),
-       backgroundColor: Colors.deepOrange,
-       centerTitle: true,
+
+        appBar: AppBar(
+          title: Text("Complete Tassk"),
+          backgroundColor: Colors.deepOrange,
+          centerTitle: true,
      ),
+
+          drawer: const NavigationDrawer(),
 
     body: ListView(
       padding: EdgeInsets.all(22),
@@ -75,16 +82,16 @@ class _MainPageState extends State<MainPage> {
 
                   acc_Val1 = 10;
                   if( task2status == true && task3status == true ) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => HomePage()
-                    ));
-                    // Navigator.pushAndRemoveUntil(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => HomePage()
-                    //     ),
-                    //     ModalRoute.withName("/HomePage")
-                    // );
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => HomePage()
+                    // ));
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomePage()
+                        ),
+                        ModalRoute.withName("/HomePage")
+                    );
                   }
                 });
               }
@@ -104,14 +111,14 @@ class _MainPageState extends State<MainPage> {
 
                   acc_Val1 = 10;
                   if( task2status == true && task3status == true ) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => HomePage()
-                    ));
-                    // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context){
-                    //   return HomePage();
-                    // }), (r){
-                    //   return false;
-                    // });
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => HomePage()
+                    // ));
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context){
+                      return HomePage();
+                    }), (r){
+                      return false;
+                    });
                   }
                 });
               }
@@ -131,16 +138,16 @@ class _MainPageState extends State<MainPage> {
 
                   acc_Val1 = 10;
                   if(task2status == true && task3status == true ) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => HomePage()
-                    ));
-                    // Navigator.pushAndRemoveUntil(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => HomePage()
-                    //     ),
-                    //     ModalRoute.withName("/HomePage")
-                    // );
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => HomePage()
+                    // ));
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomePage()
+                        ),
+                        ModalRoute.withName("/HomePage")
+                    );
                   }
                 });
               }
@@ -163,16 +170,16 @@ class _MainPageState extends State<MainPage> {
 
                   acc_Val2 = 10;
                   if( task1status == true  && task3status == true ) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => HomePage()
-                    ));
-                    // Navigator.pushAndRemoveUntil(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => HomePage()
-                    //     ),
-                    //     ModalRoute.withName("/HomePage")
-                    // );
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => HomePage()
+                    // ));
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomePage()
+                        ),
+                        ModalRoute.withName("/HomePage")
+                    );
                     }
                 });
               }
@@ -196,16 +203,16 @@ class _MainPageState extends State<MainPage> {
 
                     acc_Val2 = 10;
                     if( task1status == true  && task3status == true ) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => HomePage()
-                      ));
-                      // Navigator.pushAndRemoveUntil(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => HomePage()
-                      //     ),
-                      //     ModalRoute.withName("/HomePage")
-                      // );
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => HomePage()
+                      // ));
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomePage()
+                          ),
+                          ModalRoute.withName("/HomePage")
+                      );
                     }
                   });
                 }
@@ -229,16 +236,16 @@ class _MainPageState extends State<MainPage> {
 
                   acc_Val2 = 10;
                   if( task1status == true  && task3status == true ) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => HomePage()
-                    ));
-                    // Navigator.pushAndRemoveUntil(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => HomePage()
-                    //     ),
-                    //     ModalRoute.withName("/HomePage")
-                    // );
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => HomePage()
+                    // ));
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomePage()
+                        ),
+                        ModalRoute.withName("/HomePage")
+                    );
                   }
                 });
               }
@@ -260,16 +267,16 @@ class _MainPageState extends State<MainPage> {
 
                     acc_Val3 = 10;
                     if( task1status == true && task2status == true ) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => HomePage()
-                      ));
-                      // Navigator.pushAndRemoveUntil(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => HomePage()
-                      //     ),
-                      //     ModalRoute.withName("/HomePage")
-                      // );
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => HomePage()
+                      // ));
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomePage()
+                          ),
+                          ModalRoute.withName("/HomePage")
+                      );
                     }
                   });
                 }
@@ -291,16 +298,16 @@ class _MainPageState extends State<MainPage> {
 
                     acc_Val3 = 10;
                     if( task1status == true && task2status == true ) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => HomePage()
-                      ));
-                      // Navigator.pushAndRemoveUntil(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => HomePage()
-                      //     ),
-                      //     ModalRoute.withName("/HomePage")
-                      // );
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => HomePage()
+                      // ));
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomePage()
+                          ),
+                          ModalRoute.withName("/HomePage")
+                      );
                     }
                   });
                 }
@@ -321,16 +328,16 @@ class _MainPageState extends State<MainPage> {
 
                     acc_Val3 = 10;
                     if( task1status == true && task2status == true ) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => HomePage()
-                      ));
-                      // Navigator.pushAndRemoveUntil(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => HomePage()
-                      //     ),
-                      //     ModalRoute.withName("/HomePage")
-                      // );
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      // builder: (context) => HomePage()
+                      // ));
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomePage()
+                          ),
+                          ModalRoute.withName("/HomePage")
+                      );
                     }
                   });
               }
@@ -349,16 +356,16 @@ class _MainPageState extends State<MainPage> {
 
                   _visible3 = !_visible3;
 
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => HomePage()
-                  ));
-                  // Navigator.pushAndRemoveUntil(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => HomePage()
-                  //     ),
-                  //     ModalRoute.withName("/HomePage")
-                  // );
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (context) => HomePage()
+                  // ));
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HomePage()
+                      ),
+                      ModalRoute.withName("/HomePage")
+                  );
                 });
               }
             },
@@ -770,4 +777,90 @@ class _MainPageState extends State<MainPage> {
     ),
   );
 
+}
+
+class NavigationDrawer extends StatelessWidget {
+  const NavigationDrawer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) =>  Drawer(
+
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children:<Widget> [
+        buildHeader(context),
+        buildMenuItems(context),
+      ],
+    ),
+  );
+
+  Widget buildHeader(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
+
+    return Container(
+
+      color: Colors.deepOrange,
+      padding: EdgeInsets.only(
+        top: 24 + MediaQuery
+            .of(context)
+            .padding
+            .top,
+        bottom: 24,
+      ),
+      child: Column(
+        children: [
+          Text(
+            'Signed in as',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height:20),
+          Text(
+            user.email!,
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );}
+  Widget buildMenuItems(BuildContext context) =>
+      Container(
+        padding: const EdgeInsets.all(24),
+        child: Wrap(
+          runSpacing: 16,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.workspace_premium_outlined),
+              title: const Text("Get Professional Help"),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const ProfessionalHelp()));
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.my_library_music),
+              title: const Text("Music Player"),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const MusicList()));
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.movie_creation),
+              title: const Text("Book Tickets"),
+              onTap: () {
+                LaunchApp.openApp(
+                  androidPackageName: 'com.bt.bms',
+                  openStore: true,
+
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.login_outlined),
+              title: const Text("Logout"),
+              onTap: () => FirebaseAuth.instance.signOut(),
+            ),
+          ],
+        ),);
 }

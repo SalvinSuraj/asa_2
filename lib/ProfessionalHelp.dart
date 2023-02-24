@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'home_page.dart';
+
 class ProfessionalHelp extends StatelessWidget {
   const ProfessionalHelp({Key? key}) : super(key: key);
 
@@ -15,6 +17,18 @@ class ProfessionalHelp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
+          onPressed: () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => HomePage()
+                ),
+                ModalRoute.withName("/HomePage")
+            );
+          },
+        ),
         title: const Text("Get Professional Help"),
         backgroundColor: Colors.deepOrange,
       ),

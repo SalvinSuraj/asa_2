@@ -39,8 +39,13 @@ class _MusicListState extends State<MusicList> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HomePage()));
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => HomePage()
+                  ),
+                  ModalRoute.withName("/HomePage")
+              );
             },
           )),
       //upload song fab button
