@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'Task.dart';
 
 class slider3 extends StatefulWidget {
@@ -18,9 +20,28 @@ class _slider3State extends State<slider3> {
 
   _slider3State(this.pass_valq1,this.pass_valq2);
 
+  Future<bool> _onWillPop() async {
+    return false;
+  }
+
+  String cdate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+
+  final firestoreinstance = FirebaseFirestore.instance;
+  Question3(value,date){
+    var data = {
+      'answer_3': value,
+      'answer3_date':date,
+    };
+    firestoreinstance
+        .collection('Answer_Anal')
+        .doc()
+        .set(data);
+  }
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return  WillPopScope(
+        onWillPop: _onWillPop,
+      child: Scaffold(
       resizeToAvoidBottomInset: false,
 
       backgroundColor: Colors.purple.shade400,
@@ -55,7 +76,11 @@ class _slider3State extends State<slider3> {
                   });
                 }),),
           SizedBox(height: 150),
-          TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+          TextButton( child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black)),
+            onPressed: () {
+
+                Question3(currentValue3,cdate);
+                Navigator.of(context).push(MaterialPageRoute(
             builder: (context) =>  MainPage(pass_valq1: pass_valq1, pass_valq2: pass_valq2, pass_valq3: currentValue3),
             // Navigator.pushAndRemoveUntil(
             //     context,
@@ -64,9 +89,12 @@ class _slider3State extends State<slider3> {
             //     ),
             //     ModalRoute.withName("/HomePage")
             // )
-         )), child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black))),
+         ));
+          }
+          ),
         ],
       ),
+    )
     );
   }
 }

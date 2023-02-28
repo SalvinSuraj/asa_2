@@ -30,6 +30,8 @@ class _MainPageState extends State<MainPage> {
 
   _MainPageState(this.acc_Val1, this.acc_Val2, this.acc_Val3);
 
+  
+
   Future<bool> _onWillPop() async {
     return false;
   }

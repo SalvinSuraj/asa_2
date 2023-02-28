@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:signin/questions/question_3.dart';
 
 class slider2 extends StatefulWidget {
@@ -13,9 +15,29 @@ class _slider2State extends State<slider2> {
   double currentValue2 = 0;
    double pass_valq1;
    _slider2State(this.pass_valq1);
+
+  Future<bool> _onWillPop() async {
+    return false;
+  }
+
+  String cdate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+
+  final firestoreinstance = FirebaseFirestore.instance;
+  Question2(value,date){
+    var data = {
+      'answer_2': value,
+      'answer2_date':date,
+    };
+    firestoreinstance
+        .collection('Answer_Anal')
+        .doc()
+        .set(data);
+  }
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return  WillPopScope(
+        onWillPop: _onWillPop,
+        child: Scaffold(
       resizeToAvoidBottomInset: false,
 
       backgroundColor: Colors.red.shade400,
@@ -53,12 +75,18 @@ class _slider2State extends State<slider2> {
                   });
                 }),),
           SizedBox(height: 180),
-          TextButton(onPressed: () =>Navigator.of(context).push(MaterialPageRoute(
+          TextButton(child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black)),
+              onPressed: () {
+              Question2(currentValue2,cdate);
+
+              Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => slider3(pass_valq1:pass_valq1,pass_valq2:currentValue2),
-          )), child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black))),
+          ));
+          }),
 
         ],
       ),
+    )
     );
   }
 }

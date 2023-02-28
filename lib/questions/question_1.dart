@@ -1,4 +1,8 @@
+// import 'dart:html';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:signin/questions/question_2.dart';
 
 class slider1 extends StatefulWidget {
@@ -9,11 +13,38 @@ class slider1 extends StatefulWidget {
 }
 
 class _slider1State extends State<slider1> {
+
+  Future<bool> _onWillPop() async {
+    return false;
+  }
+
+  final firestoreinstance = FirebaseFirestore.instance;
+
   double currentValue_Q1 = 0;
+
+  String cdate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+
+  // double value(){return currentValue_Q1;}
+  //
+  // final val = int.parse()
+
+
+  Question1(value,date){
+    var data = {
+      'answer_1': value,
+      'answer1_date':date,
+    };
+    firestoreinstance
+        .collection('Answer_Anal')
+        .doc()
+        .set(data);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return   WillPopScope(
+        onWillPop: _onWillPop,
+        child: Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.deepOrange.shade400,
        body: Column(
@@ -50,12 +81,38 @@ class _slider1State extends State<slider1> {
                }),),
            SizedBox(height: 150),
            TextButton(child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black)),
-               onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+               onPressed: () {
+                 // final value = Value(
+                 //   answer1 : int.parse(currentValue_Q1 as String),
+                 // );
+                 //
+                 // ValuePass(value);
+
+                 Question1(currentValue_Q1,cdate);
+
+                 Navigator.of(context).push(MaterialPageRoute(
                  builder: (context) =>  slider2(pass_valq1:currentValue_Q1),
-               )), ),
+               ));
+             },
+           ),
 
          ],
        ),
+    )
     );
   }
+
+  // Future ValuePass({required double value}) async{
+  //
+  //   final answer1 = FirebaseFirestore.instance.collection('Question').doc();
+  //
+  //   final json = {
+  //     'ans1' : value,
+  //   };
+  //
+  //   await answer1.set(json);
+  // }
 }
+
+
+
