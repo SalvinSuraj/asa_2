@@ -2,9 +2,14 @@ import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:signin/music%20player/musicList.dart';
-import 'package:signin/questions/question_1.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:signin/questions/question_1.dart';
 
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:flutter/scheduler.dart';
 
 import 'ProfessionalHelp.dart';
 
@@ -14,8 +19,89 @@ class HomePage extends StatefulWidget{
 
 }
 
+
 class _HomePageState extends  State<HomePage>
 {
+
+  List<_ChartData> chartData = <_ChartData>[];
+
+  @override
+  void initState() {
+    getDataFromFireStore().then((results) {
+      SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+        setState(() {});
+      });
+    });
+    super.initState();
+  }
+
+  Future<void> getDataFromFireStore() async {
+    var snapShotsValue =
+    await FirebaseFirestore.instance.collection("Answer_Anal_1").get();
+    List<_ChartData> list = snapShotsValue.docs
+        .map((e) => _ChartData(date: DateTime.fromMillisecondsSinceEpoch(
+        e.data()['answer1_date'].millisecondsSinceEpoch)
+        , value: e.data()['answer_1'],
+        value2: e.data()['answer_2'],
+        value3: e.data()['answer_3']))
+        .toList();
+    setState(() {
+      chartData = list;
+    });
+  }
+
+
+  Widget _showChart() {
+    return Scaffold(
+      body: SfCartesianChart(
+          title: ChartTitle(text: 'Analysis Of DATA'),
+          legend: Legend(isVisible: true),
+          tooltipBehavior: TooltipBehavior(enable: true),
+          primaryXAxis: DateTimeCategoryAxis(),
+          primaryYAxis: NumericAxis(
+              minimum: 0,
+              maximum: 30
+          ),
+          series: <ChartSeries<_ChartData, DateTime>>[
+            StackedColumnSeries<_ChartData, DateTime>(
+                dataSource: chartData,
+                xValueMapper: (_ChartData data, _) => data.date,
+                yValueMapper: (_ChartData data, _) => data.value,
+                name: 'Question1',
+                color: Colors.red,
+                markerSettings: MarkerSettings(isVisible: true)
+            ),
+            StackedColumnSeries<_ChartData, DateTime>(
+                dataSource: chartData,
+                xValueMapper: (_ChartData data, _) => data.date,
+                yValueMapper: (_ChartData data, _) => data.value2,
+                name: 'Question2',
+                color: Colors.blue,
+                markerSettings: MarkerSettings(isVisible: true)
+            ),
+            StackedColumnSeries<_ChartData, DateTime>(
+                dataSource: chartData,
+                xValueMapper: (_ChartData data, _) => data.date,
+                yValueMapper: (_ChartData data, _) => data.value3,
+                name: 'Question3',
+                color: Colors.green,
+                markerSettings: MarkerSettings(isVisible: true)
+            ),
+          ]
+          // series: <LineSeries<_ChartData, DateTime>>[
+          //   LineSeries<_ChartData, DateTime>(
+          //       dataSource: chartData,
+          //       xValueMapper: (_ChartData data, _) => data.date,
+          //       yValueMapper: (_ChartData data, _) => data.value,
+          //       color: Colors.purple,
+          //       name: 'Question 1',
+          //       markerSettings: MarkerSettings(isVisible: true)
+          //   )
+          // ]
+      ),
+    );
+  }
+
   final user = FirebaseAuth.instance.currentUser!;
 
   Future<bool> _onWillPop() async {
@@ -85,7 +171,6 @@ class _HomePageState extends  State<HomePage>
           ],
         ),
     ),*/
-
         body: Column(
           children: [
             const TabBar(
@@ -131,10 +216,7 @@ class _HomePageState extends  State<HomePage>
                 ),
 
               Container(
-                child: const Center(
-                  child: Text("Second Tab"),
-
-                ),
+                child: _showChart(),
               )
             ]),)
           ],
@@ -144,7 +226,18 @@ class _HomePageState extends  State<HomePage>
     );
   }
 
+
 }
+
+class _ChartData { //TRIED TO GET Chart
+  _ChartData({this.date, this.value, this.value2,this.value3});
+  final DateTime? date;
+  final int? value;
+  final int? value2;
+  final int? value3;
+
+}
+
 class NavigationDrawer extends StatelessWidget {
   const NavigationDrawer({Key? key}) : super(key: key);
 

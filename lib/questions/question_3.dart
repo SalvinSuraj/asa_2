@@ -14,6 +14,11 @@ class slider3 extends StatefulWidget {
 }
 
 class _slider3State extends State<slider3> {
+
+  late int value_Q1 ;
+  late int value_Q2 ;
+  late int value_Q3 ;
+
   double currentValue3 = 0;
   double pass_valq1;
   double pass_valq2;
@@ -24,17 +29,21 @@ class _slider3State extends State<slider3> {
     return false;
   }
 
-  String cdate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+  String docdate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+
+  DateTime cdate = DateTime.now();
 
   final firestoreinstance = FirebaseFirestore.instance;
-  Question3(value,date){
+  Question3(value1,value2,value3,date){
     var data = {
-      'answer_3': value,
-      'answer3_date':date,
+      'answer1_date':date,
+      'answer_1': value1,
+      'answer_2': value2,
+      'answer_3': value3,
     };
     firestoreinstance
-        .collection('Answer_Anal')
-        .doc()
+        .collection('Answer_Anal_1')
+        .doc(docdate)
         .set(data);
   }
   @override
@@ -79,7 +88,11 @@ class _slider3State extends State<slider3> {
           TextButton( child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black)),
             onPressed: () {
 
-                Question3(currentValue3,cdate);
+              value_Q1 = pass_valq1.round();
+              value_Q2 = pass_valq2.round();
+              value_Q3 = currentValue3.round();
+
+                Question3(value_Q1,value_Q2,value_Q3,cdate);
                 Navigator.of(context).push(MaterialPageRoute(
             builder: (context) =>  MainPage(pass_valq1: pass_valq1, pass_valq2: pass_valq2, pass_valq3: currentValue3),
             // Navigator.pushAndRemoveUntil(

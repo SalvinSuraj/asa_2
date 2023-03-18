@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:signin/questions/question_3.dart';
 
 class slider2 extends StatefulWidget {
@@ -20,7 +19,9 @@ class _slider2State extends State<slider2> {
     return false;
   }
 
-  String cdate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+  // String cdate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+
+  DateTime cdate = DateTime.now();
 
   final firestoreinstance = FirebaseFirestore.instance;
   Question2(value,date){
@@ -29,7 +30,7 @@ class _slider2State extends State<slider2> {
       'answer2_date':date,
     };
     firestoreinstance
-        .collection('Answer_Anal')
+        .collection('Answer_Anal_2')
         .doc()
         .set(data);
   }
@@ -77,6 +78,7 @@ class _slider2State extends State<slider2> {
           SizedBox(height: 180),
           TextButton(child: const Text("Next",style: TextStyle(fontSize: 30,color: Colors.black)),
               onPressed: () {
+
               Question2(currentValue2,cdate);
 
               Navigator.of(context).push(MaterialPageRoute(
